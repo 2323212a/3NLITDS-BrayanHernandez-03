@@ -39,7 +39,26 @@ namespace _3NLITDS_BrayanHernandez_03
 
         private void btncalcular_Click(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrWhiteSpace(txtcelsius.Text))
+            {
+                MessageBox.Show("Por favor ingresa un valor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                double celsius = Convert.ToDouble(txtcelsius.Text);
+
+                double fahrenheit = (celsius * 9 / 5) + 32;
+                double kelvin = celsius + 273.15;
+
+                txtfaren.Text = fahrenheit.ToString("F2"); // con 2 decimales
+                txtkelvin.Text = kelvin.ToString("F2");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("El valor ingresado no es un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btncancelar_Click(object sender, EventArgs e)
@@ -64,5 +83,6 @@ namespace _3NLITDS_BrayanHernandez_03
         {
 
         }
+
     }
 }
